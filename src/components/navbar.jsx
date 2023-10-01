@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { useAuth } from '../../utils/AuthContext';
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = () => {
+  const { isLoggedIn } = useAuth(); // Mengambil isLoggedIn dari konteks autentikasi
+
   return (
     <nav className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
