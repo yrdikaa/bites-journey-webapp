@@ -2,14 +2,21 @@ import Link from 'next/link';
 import { useAuth } from '../../utils/AuthContext';
 
 const Navbar = () => {
-  const { isLoggedIn } = useAuth(); // Mengambil isLoggedIn dari konteks autentikasi
+  const { isLoggedIn, logout ,login } = useAuth(); // Mengambil isLoggedIn dari konteks autentikasi
+
+  const handleLogout = () => {
+    // Panggil fungsi logout ketika tombol "Sign out" diklik
+    logout();
+    console.log(isLoggedIn); // Cetak nilai isLoggedIn ke konsol
+    window.location.reload()
+  };
 
   return (
     <nav className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex flex-shrink-0 items-center">
+          <div className="flex flex-shrink-0 items-center" onClick={handleLogout}>
             <img
               className="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -53,11 +60,12 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <>
                   <NavItem href="/profile" label="Profile" />
-                  <NavItem href="/signout" label="Sign out" />
+                  <NavItem href="/home" label="Sign out" onClick={handleLogout} />
+                  <button logout />
                 </>
               ) : (
                 <>
-                  <NavItem href="/signin" label="Sign in" />
+                  <NavItem href="/signin" label="Sign in" onClick={login}/>
                   <NavItem href="/register" label="Register" />
                 </>
               )}

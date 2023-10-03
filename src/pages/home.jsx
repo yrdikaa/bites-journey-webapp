@@ -1,7 +1,8 @@
 // pages/index.js
 import Navbar from '@/components/navbar';
 import Main from '../components/main';
-import { AuthProvider } from '../../utils/AuthContext';
+import { AuthProvider ,logout,login} from '../../utils/AuthContext';
+
 
 
 const home = () => {
@@ -16,12 +17,10 @@ const home = () => {
     },
     // Tambahkan artikel lainnya di sini
   ];
-  const isLoggedIn = true; 
   return (
     <div>
       <AuthProvider>
-
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar />
       <div className="container">
         {articles.map((article, index) => (
           <Main key={index} article={article} />
