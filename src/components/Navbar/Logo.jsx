@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div className="logo" class="">
       {/* Isi dengan logo Anda */}
-      <img src="/path-to-your-logo.png" alt="Logo" />
+      <img src="https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg" width="75" alt="Logo" />
     </div>
   );
 };
