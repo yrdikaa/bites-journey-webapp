@@ -1,20 +1,26 @@
-// pages/index.js
-
-import { AuthProvider } from '../../utils/AuthContext';
+import {AuthProvider} from '../../utils/AuthContext';
 import Navbar from '@/components/Navbar/Navbar';
 import Logincomponent from '@/components/Login/Logincomponent';
+import {checkTokenAndRedirect} from '../../utils/auth.utils';
+import {useRouter} from 'next/router';
+import {useEffect} from 'react';
+import {Provider} from 'react-redux';
 
 const Login = () => {
-  // Data artikel Anda bisa dimuat di sini
+    const router = useRouter();
 
-  return (
-    <div>
-    <AuthProvider>
-        <Navbar />
-       <Logincomponent />
-       </AuthProvider>
-    </div>
-  );
+    useEffect(() => {
+        checkTokenAndRedirect(router);
+    }, [router]);
+
+    return (
+        <div>
+            <AuthProvider>
+                <Navbar/>
+                <Logincomponent/>
+            </AuthProvider>
+        </div>
+    );
 };
 
 export default Login;

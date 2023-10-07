@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useAuth } from '../../../utils/AuthContext';
 
 const Login_form = () => {
@@ -19,18 +19,19 @@ const Login_form = () => {
     try {
       // Panggil fungsi login dengan data dari form
       await login(formData);
-      // Redirect atau lakukan tindakan lain setelah login berhasil
+      window.location('/home')
     } catch (error) {
       console.error('Error:', error);
       // Handle login error
     }
   };
 
+
   return (
     <div className="rounded-xl bg-white bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8">
       <div className="text-blue">
         <div className="mb-8 flex flex-col items-center">
-          <img src="https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg" width="150" alt="" srcSet="" />
+          <img src="./photo_2023-10-07_10-07-17.jpg" width="150" alt="" srcSet="" />
           <h1 className="mb-2 text-2xl">Bites Journey</h1>
         </div>
         <form onSubmit={handleSubmit}>

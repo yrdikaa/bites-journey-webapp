@@ -1,13 +1,14 @@
 // Logo.js
+import Image from 'next/image';
 import React from 'react';
 
 const Logo = () => {
-  return (
-    <div className="logo" class="">
-      {/* Isi dengan logo Anda */}
-      <img src="https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg" width="75" alt="Logo" />
-    </div>
-  );
+    return (
+        <div className="logo" class="">
+            {/* Isi dengan logo Anda */}
+            <Image src="/photo_2023-10-07_10-07-17.jpg" width="90" height="60" alt="Logo"/>
+        </div>
+    );
 };
 
 export default Logo;

@@ -1,28 +1,45 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Logo from './Logo'
 import Auth_menu from './Auth_menu'
-import Profile_menu from './profile_menu'
+import ProfileMenu from './ProfileMenu'
 import SearchBar from './Searchbar'
-import { useAuth } from '../../../utils/AuthContext'
+import {useAuth} from '../../../utils/AuthContext'
+import Menu from './Menu'
 
 const Navbar = () => {
-    const { user, logout } = useAuth();
+    const userData = useAuth()
+    const user = userData.user
+    const [token, setToken] = useState('');
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedToken = localStorage.getItem('token');
+            setToken(storedToken);
+        }
+    }, []);
+    console.log(token);
+
     return (
-        <div class="navbar p-4 flex flex-row justify-between text-blue-400 bg-white">
-            <div class="flex flex-3/4">
-                <div class="flex-1/2">
-                    <Logo />
+        <div class="fixed top-0 left-0 right-0 z-50 ">
+            <div class="navbar p-1 flex flex-row justify-between items-center text-blue-400 bg-white " >
+                <div class="flex">
+                    <Logo/>
+                    <SearchBar/>
                 </div>
-                <div class="flex-1/2">
-                    <SearchBar />
+                <div class="flex ">
+                    <Menu/>
+                </div>
+                <div>
+                    {
+                        token
+                            ? <ProfileMenu/>
+                            : <Auth_menu/>
+                    }
                 </div>
             </div>
-            <div class="flex-1/4 flex justify-end">
-                {user ? <Profile_menu /> : <Auth_menu />}
-            </div>
+
         </div>
 
     )
 }
-
 export default Navbar
