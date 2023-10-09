@@ -4,7 +4,6 @@ import Logincomponent from '@/components/Login/Logincomponent';
 import {checkTokenAndRedirect} from '../../utils/auth.utils';
 import {useRouter} from 'next/router';
 import {useEffect} from 'react';
-import {Provider} from 'react-redux';
 
 const Login = () => {
     const router = useRouter();

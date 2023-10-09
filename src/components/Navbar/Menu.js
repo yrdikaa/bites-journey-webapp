@@ -4,9 +4,12 @@ import Link from 'next/link'
 const Menu = () => {
     return (
         <div >
-            <div class="flex justify-between gap-5">
+            <div className="flex justify-between gap-5">
                 <Link href="/home">
                     Home
+                </Link>
+                <Link href="/Articles">
+                    Articles
                 </Link>
                 <Link href="/create-article">
                    Create Article

@@ -1,7 +1,6 @@
 // utils/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 const AuthContext = createContext();
 
@@ -9,26 +8,26 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Cek apakah pengguna sudah login saat aplikasi dimuat
-    checkUserLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   // Cek apakah pengguna sudah login saat aplikasi dimuat
+  //   checkUserLoggedIn();
+  // }, []);
 
-  // Fungsi untuk memeriksa apakah pengguna sudah login dengan JWT
-  const checkUserLoggedIn = async () => {
-    try {
-      const response = await axios.get('/api/check-auth'); // Ganti dengan endpoint yang sesuai
-      const userData = response.data;
+  // // Fungsi untuk memeriksa apakah pengguna sudah login dengan JWT
+  // const checkUserLoggedIn = async () => {
+  //   try {
+  //     const response = await axios.get('/api/check-auth'); // Ganti dengan endpoint yang sesuai
+  //     const userData = response.data;
 
-      if (userData) {
-        setUser(userData);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  //     if (userData) {
+  //       setUser(userData);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
 
-    setLoading(false);
-  };
+  //   setLoading(false);
+  // };
 
   // Fungsi untuk login
   const login = async (formData) => {
