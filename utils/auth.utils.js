@@ -5,7 +5,7 @@ export const checkTokenAndRedirect = (router) => {
   
       // Jika token ada, lakukan redirect ke halaman lain (misalnya, '/dashboard')
       if (token) {
-        router.push('/dashboard');
+        window.location.href = '/home'
       }
     }
   };

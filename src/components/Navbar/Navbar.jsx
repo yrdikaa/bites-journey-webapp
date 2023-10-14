@@ -19,8 +19,8 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50">
-            <div className="navbar p-1 flex flex-row justify-between items-center text-blue-400 bg-white " >
+        <div className="rounded-sm fixed top-0 left-0 right-0 z-50">
+            <div className="navbar p-4 flex flex-row justify-between items-center text-blue-400 bg-rose-100 " >
                 <div className="flex">
                     <Logo/>
                     <SearchBar/>
