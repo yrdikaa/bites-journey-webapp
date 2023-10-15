@@ -16,6 +16,7 @@ const ArticlePage = () => {
           setError('Belum ada artikel yang dibuat.');
         } else {
           setArticles(articlesData);
+          console.log(articlesData);
 
           // Mulai interval untuk mengganti gambar setiap 5 detik
           const imageChangeInterval = setInterval(() => {
