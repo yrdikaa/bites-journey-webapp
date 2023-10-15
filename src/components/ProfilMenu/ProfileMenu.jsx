@@ -3,20 +3,39 @@
 import React from 'react';
 import SideMenu from './SideMenu';
 import ArticleCard from './ArticleCard';
+import {useState, useEffect} from 'react';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 const ProfileMenu = () => {
-    const articles = [
-        // Isi dengan data artikel yang sesuai
-        {
-            id: 1,
-            title: 'Judul Artikel 1',
-            content: 'Isi Artikel 1'
-        }, {
-            id: 2,
-            title: 'Judul Artikel 2',
-            content: 'Isi Artikel 2'
-        }
-    ];
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        const user = decodedToken.uid_users;
+
+        const config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: `http://localhost:9000/api/v1/article/${user}`,
+            headers: {
+                'Authorization': `${token}`,
+                'x-api-key': 'binar-36'
+            }
+        };
+
+        axios
+            .request(config)
+            .then((response) => {
+                setArticles(response.data.data);
+                console.log(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     // Fungsi untuk mengedit artikel
     const handleEdit = () => {
         // Lakukan tindakan edit
@@ -36,7 +55,7 @@ const ProfileMenu = () => {
 
                 <div className=" p-4 mb-4 rounded border-solid border-red ">
                     <main className="w-full sm:w-3/4 p-4 ">
-                        {articles.map((article) => (<ArticleCard key={article.id} article={article}/>))}
+                        {articles.map((articles) => (<ArticleCard key={articles.id} articles={articles}/>))}
                     </main>
                 </div>
             </div>
