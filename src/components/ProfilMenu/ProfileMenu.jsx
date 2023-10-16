@@ -55,7 +55,7 @@ const ProfileMenu = () => {
 
                 <div className=" p-4 mb-4 rounded border-solid border-red ">
                     <main className="w-full sm:w-3/4 p-4 ">
-                        {articles.map((articles) => (<ArticleCard key={articles.id} articles={articles}/>))}
+                        {articles.map((article) => (<ArticleCard key={article.id} articles={article}/>))}
                     </main>
                 </div>
             </div>

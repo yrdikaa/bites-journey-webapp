@@ -6,9 +6,9 @@ export default async function handler(req, res) {
     const config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://localhost:9000/api/v1/user',
+      url: 'http://localhost:9000/api/v1/user/adi1',
       headers: {
-        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWRfdXNlcnMiOjEsInVzZXJuYW1lIjoiYWRpMSIsImlhdCI6MTY5Njk0NDQ5OSwiZXhwIjoxNjk2OTQ4MDk5fQ.N6a9CcC7Szd2e9F0CdJ2Ve3moFvtZpxub-clidwujXg',
+        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWRfdXNlcnMiOjEsInVzZXJuYW1lIjoiYWRpMSIsImlhdCI6MTY5NzM4MDg0MCwiZXhwIjoxNjk3Mzg0NDQwfQ.iM0aqsR01nHHR4_msEsJEm88sULmGqE_ItJ1VPG_jIk',
         'x-api-key': 'binar-36',
         // 'Cookie': req.headers.cookie || '', // Menggunakan cookie yang dikirim oleh klien
       },

@@ -46,6 +46,27 @@ export const getArticleByID = async (id) => {
       throw error; // Dilemparkan untuk menangani kesalahan di tempat lain
     }
   };
+
+  export const deleteArticleById = async(id) =>{
+    try {
+      const jwtToken = localStorage.getItem('token');
+      const apikey = 'binar-36'
+      const config = {
+        method: 'delete',
+        maxBodyLength: Infinity,
+        url: `http://localhost:9000/api/v1/article/delete/${id}`,
+        headers: {
+          'Authorization': jwtToken,
+          'x-api-key': apikey
+        }
+      };
+      const response = await axios.request(config);
+      return response.data; // Mengembalikan data artikel
+    } catch (error) {
+      console.error('Error fetching article:', error);
+      throw error; // Dilemparkan untuk menangani kesalahan di tempat lain
+    }
+  }
   
   
   

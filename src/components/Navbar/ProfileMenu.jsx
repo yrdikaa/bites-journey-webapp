@@ -1,8 +1,10 @@
-import Image from 'next/image';
+
 import Link from 'next/link';
 import React, {useState, useEffect} from 'react';
 import jwtDecode from 'jwt-decode'; // Anda dapat menggunakan library jwt-decode
 import {useAuth} from '../../../utils/AuthContext';
+import axios from 'axios';
+
 
 const ProfileMenu = () => {
     const {logout} = useAuth();
@@ -19,24 +21,36 @@ const ProfileMenu = () => {
         window.location.href = '/login'
     };
     useEffect(() => {
-        // Ambil token JWT dari local storage
         const token = localStorage.getItem('token');
-
-        // Dekode token JWT untuk mendapatkan ID pengguna
         const decodedToken = jwtDecode(token);
-        const user = decodedToken.username;
+        const user = decodedToken.uid_users;
 
-        // Buat header untuk permintaan API
-        const headers = {
-            'x-api-key': 'binar-36',
-            'Authorization': `${token}`
+        const config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:9000/api/v1/user/adi1',
+            headers: {
+                'Authorization': `${token}`,
+                'x-api-key': 'binar-36',
+            },
         };
 
-        // Lakukan permintaan API dengan ID pengguna
-        fetch(`http://localhost:9000/api/v1/user/${user}`, {headers})
-            .then(
-                (response) => response.json()
-            )
+        axios
+            .request(config)
+            .then((response) => {
+                setArticles(response.data.data);
+                console.log(response.data.data);
+
+                // Mengambil header 'token' dari respons
+                const newAccessToken = response.headers['token'];
+                console.log(newAccessToken);
+
+                // Lakukan apa yang Anda perlu lakukan dengan token baru
+                // Jika diperlukan, gantilah token di localStorage
+                // localStorage.setItem('token', newAccessToken);
+
+                return response.json();
+            })
             .then((data) => {
                 setUserData(data);
                 console.log(data);
@@ -46,6 +60,7 @@ const ProfileMenu = () => {
             });
     }, []);
 
+    
     return (
         <div className="navbar relative">
             <div className="navbar-profile-toggle" onClick={toggleProfileDropdown}>
