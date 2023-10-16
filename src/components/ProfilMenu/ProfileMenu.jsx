@@ -24,12 +24,10 @@ const ProfileMenu = () => {
                 'x-api-key': 'binar-36'
             }
         };
-
         axios
             .request(config)
             .then((response) => {
                 setArticles(response.data.data);
-                console.log(response.data.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -45,16 +43,16 @@ const ProfileMenu = () => {
     const handleDelete = () => {};
     return (
         <div
-            className="justify-center bg-gray-100 text-black h-screen pt-20 border-2 border-black-500 border-solid">
+            className="justify-center pt-10 mb-0 bg-gray-100 text-black h-full sm:h-fit  border-2 border-black-500 border-solid">
 
             <div className="grid grid-cols-1 md:grid-cols-4 p-4">
                 <div
-                    className=" md:col-span-1 p-4 border-solid border-2 h-full w-72 border-gray-500 rounded-xl">
+                    className=" hidden sm:block md:col-span-1 p-4 border-solid border-2 h-full w-72 border-gray-500 rounded-xl">
                     <SideMenu/>
                 </div>
 
                 <div className=" p-4 mb-4 rounded border-solid border-red ">
-                    <main className="w-full sm:w-3/4 p-4 ">
+                    <main className="w-full buttom-0 ">
                         {articles.map((article) => (<ArticleCard key={article.id} articles={article}/>))}
                     </main>
                 </div>

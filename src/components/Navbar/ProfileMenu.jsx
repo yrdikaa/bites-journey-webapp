@@ -1,10 +1,8 @@
-
 import Link from 'next/link';
 import React, {useState, useEffect} from 'react';
 import jwtDecode from 'jwt-decode'; // Anda dapat menggunakan library jwt-decode
 import {useAuth} from '../../../utils/AuthContext';
-import axios from 'axios';
-
+import getProfileData from '../../../utils/Profile';
 
 const ProfileMenu = () => {
     const {logout} = useAuth();
@@ -16,51 +14,21 @@ const ProfileMenu = () => {
     };
 
     const handleLogout = () => {
-        // Panggil fungsi logout
         logout();
         window.location.href = '/login'
     };
+
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const decodedToken = jwtDecode(token);
-        const user = decodedToken.uid_users;
+        async function fetchData() {
+          const data = await getProfileData();
+          if (data) {
+            setUserData(data);
+            console.log(data);
+          }
+        }
+        fetchData();
+      }, []);
 
-        const config = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: 'http://localhost:9000/api/v1/user/adi1',
-            headers: {
-                'Authorization': `${token}`,
-                'x-api-key': 'binar-36',
-            },
-        };
-
-        axios
-            .request(config)
-            .then((response) => {
-                setArticles(response.data.data);
-                console.log(response.data.data);
-
-                // Mengambil header 'token' dari respons
-                const newAccessToken = response.headers['token'];
-                console.log(newAccessToken);
-
-                // Lakukan apa yang Anda perlu lakukan dengan token baru
-                // Jika diperlukan, gantilah token di localStorage
-                // localStorage.setItem('token', newAccessToken);
-
-                return response.json();
-            })
-            .then((data) => {
-                setUserData(data);
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error('Error fetching user data:', error);
-            });
-    }, []);
-
-    
     return (
         <div className="navbar relative">
             <div className="navbar-profile-toggle" onClick={toggleProfileDropdown}>

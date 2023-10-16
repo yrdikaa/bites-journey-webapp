@@ -2,12 +2,12 @@ import ProfileMenu from '@/components/ProfilMenu/ProfileMenu';
 import {AuthProvider} from '../../utils/AuthContext';
 import Navbar from '@/components/Navbar/Navbar';
 
-const Login = () => {
+const Profile= () => {
 
     return (
         <div>
             <AuthProvider>
-                <div className='h-screen'>
+                <div className='bg-white h-screen'>
                     <Navbar/>
                     <ProfileMenu/>
                 </div>
@@ -16,4 +16,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Profile;

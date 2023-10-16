@@ -1,17 +1,30 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import getProfileData from '../../../utils/Profile'
 import React from 'react'
 import { useAuth } from '../../../utils/AuthContext'
-
+import { useState,useEffect } from 'react'
 
 const SideMenu = () => {
     const { logout } = useAuth();
+    const [userData, setUserData] = useState(null);
 
     const handleLogout = () => {
       // Panggil fungsi logout
       logout();
       window.location.href = '/login'
     };
+
+    useEffect(() => {
+        async function fetchData() {
+          const data = await getProfileData();
+          if (data) {
+            setUserData(data);
+            console.log(data);
+          }
+        }
+        fetchData();
+      }, []);
+      
     return (
         <div className='flex flex-col gap-4'>
             <div
@@ -25,7 +38,7 @@ const SideMenu = () => {
                         alt="Foto Profil"
                         className="rounded-full w-12 h-12 mb-2"/></div>
                 <div className=''>
-                    <h2 className="text-lg font-semibold">Nama Pengguna</h2>
+                    <h2 className="text-lg font-semibold">{userData?.data.username}</h2>
                 </div>
             </div>
                 <button onClick={handleLogout}>Profil</button>
