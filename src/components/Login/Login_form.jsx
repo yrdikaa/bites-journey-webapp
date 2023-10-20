@@ -62,9 +62,12 @@ const Login_form = () => {
                         </button>
                     </div>
                 </form>
-                <a>belum punya akun?
-                    <Link className='text-gray-600 pt-auto hover:text-blue-500' href={'/Register'}>daftar disini</Link>
-                </a>
+                <div>
+                    belum punya akun?{' '}
+                    <Link href={'/Register'} className='text-gray-600 pt-auto hover:text-blue-500'>
+                        daftar disini
+                    </Link>
+                </div>
             </div>
 
         </div>

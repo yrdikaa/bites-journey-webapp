@@ -43,11 +43,11 @@ const ProfileMenu = () => {
     const handleDelete = () => {};
     return (
         <div
-            className="justify-center pt-10 mb-0 bg-gray-100 text-black h-full sm:h-fit  border-2 border-black-500 border-solid">
+            className="justify-center pt-10 mb-0 mt-10 text-black h-full sm:h-fit  border-2 border-black-500 border-solid">
 
             <div className="grid grid-cols-1 md:grid-cols-4 p-4">
                 <div
-                    className=" hidden sm:block md:col-span-1 p-4 border-solid border-2 h-full w-72 border-gray-500 rounded-xl">
+                    className=" hidden sm:block md:col-span-1 p-4 border-solid border-2 h-full w-72 border-gray-500 bg-rose-200 rounded-xl">
                     <SideMenu/>
                 </div>
 

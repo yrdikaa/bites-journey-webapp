@@ -1,4 +1,5 @@
 import axios from 'axios';
+import FormData from 'form-data';
 
 
 export const getArticles = async () => {
@@ -13,7 +14,6 @@ export const getArticles = async () => {
             'x-api-key': apikey
         }
     };
-
     try {
         const response = await axios(config);
         return response.data.data; // Mengembalikan data respons
@@ -33,9 +33,6 @@ export const getArticleByID = async (id) => {
         headers: {
           'Authorization': jwtToken,
           'x-api-key': apikey,
-          'Cookie': 'accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWRfdXNlcnMiOjEsInVzZXJuY' +
-            'W1lIjoiYWRpMSIsImlhdCI6MTY5NzI3OTg2MywiZXhwIjoxNjk3MjgzNDYzfQ.XmCWh9lTrcIZiolF' +
-            'asj6m4RRL-qdfML02u8iVyi_2kc'
         }
       };
   
@@ -67,6 +64,26 @@ export const getArticleByID = async (id) => {
       throw error; // Dilemparkan untuk menangani kesalahan di tempat lain
     }
   }
+  export const createArticle = (formData) => {
+    const token = localStorage.getItem('token');
+    return axios.post(`http://localhost:9000/api/v1/article/create`, formData, {
+      headers: {
+        'Authorization': token,
+        'x-api-key': 'binar-36', // Ganti dengan API key yang sesuai
+      }
+    })
+      .then(response => {
+        console.log(response.data);
+        return response.data; // Kembalikan data respons
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      });
+  }
+  
+  
+  
   
   
   

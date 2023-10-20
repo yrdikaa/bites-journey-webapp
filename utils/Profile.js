@@ -1,5 +1,4 @@
-
-export default async function getProfileData(user, token, apikey) {
+export default async function getProfileData(user, apikey) {
     try {
         const token = localStorage.getItem('token'); // Mendapatkan token dari localStorage
         if (!token) {
@@ -14,11 +13,12 @@ export default async function getProfileData(user, token, apikey) {
         });
 
         if (response.ok) {
-            const result = await response.json()
+            const result = await response.json();
             console.log(result);
-            const data = {data :result.responseData.data,newAccessToken :result.newAccessToken}
-            return data
-            localStorage.setItem('token', result.newAccessToken)
+            const data = { data: result.responseData.data, newAccessToken: result.newAccessToken };
+            console.log(data);
+            localStorage.setItem('token', result.newAccessToken);
+            return data;
         } else {
             console.error('Failed to fetch data');
         }

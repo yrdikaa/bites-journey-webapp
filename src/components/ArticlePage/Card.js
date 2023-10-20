@@ -3,19 +3,18 @@ import Link from 'next/link';
 
 function Card({article}) {
     return (
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden flex mb-4">
-            <img
-                src={`http://localhost:9000/public/${article.image}`}
-                alt={article.title}
-                className="w-40 h-40 object-cover"/>
-            <div className="w-1/2 p-4">
-                <Link href={`/Article/${article.id_article}`}>
-                    <h2 className="text-xl font-semibold">{article.title}</h2>
-                </Link>
-                <p className="text-gray-600">{article.author}</p>
-                <p className="mt-2">{article.description}</p>
-            </div>
+        <div className="bg-cover bg-center bg-no-repeat bg-blur w-3/4 h-40 relative rounded-lg overflow-hidden shadow-lg mb-4" style={{ backgroundImage: `url(http://localhost:9000/public/${article.image})` }}>
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black to-transparent p-4">
+          <div className="text-white">
+            <Link href={`/Article/${article.id_article}`} className="text-stone-900 hover:text-lime-400">
+            <h2 className="text-xl text-white hover:text-lime-200 font-semibold">{article.title}</h2>
+            <p>{article.author}</p>
+            <p className="mt-2 hover:text-lime-200 text-white">{article.content}</p>
+            </Link>
+          </div>
         </div>
+      </div>
+      
     );
 }
 

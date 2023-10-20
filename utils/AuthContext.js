@@ -57,7 +57,7 @@ export function AuthProvider({ children }) {
     try {
       const response = await axios.post(`${BASE_URL}/register`, userData, {
         headers: {
-          'x-api-key': 'binar',
+          'x-api-key': 'binar-36',
           'Content-Type': 'application/json',
         },
       });

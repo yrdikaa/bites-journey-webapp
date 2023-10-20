@@ -42,18 +42,18 @@ const ProfileMenu = () => {
             {
                 isProfileDropdownOpen && (
                     <div
-                        className="profile-dropdown flex flex-col items-center absolute mt-2 bg-white border border-gray-300 shadow-md p-4 rounded-lg z-10 right-0">
+                        className="profile-dropdown flex flex-col items-center absolute mt-2 bg-stone-200 border border-gray-300 shadow-md p-4 rounded-lg z-10 right-0">
                         {/* Konten dropdown profil Anda di sini */}
                         {
                             userData && (
                                 <div className='flex flex-col'>
-                                    <p className="text-gray-800">{userData.data.email}</p>
+                                    <p className="text-teal-800 font-semibold">{userData.data.email}</p>
                                 </div>
                             )
                         }
-                        <Link href="/Profile">Profil Saya</Link>
-                        <Link href="/create-article" className='block sm:hidden'>Create Article</Link>
-                        <button onClick={handleLogout}>Logout</button>
+                        <Link href="/Profile" className='hover:text-lime-200'>Profil Saya</Link>
+                        {/* <Link href="/create-article" className='block sm:hidden hover:text-lime-200'>Create Article</Link> */}
+                        <button onClick={handleLogout} className='hover:text-lime-200'>Logout</button>
                         {/* Tempatkan elemen lainnya sesuai kebutuhan */}
                     </div>
                 )
