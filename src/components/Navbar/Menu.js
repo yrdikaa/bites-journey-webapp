@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 const Menu = ({token}) => {
     return (
-        <div >
-            <div className="flex justify-between gap-5">
-                <div className='flex flex-row'>
+        <div className='relative'>
+            <div className="flex justify-between gap-5 text-sm">
+                <div className='flex flex-row items-center ' >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -22,7 +22,7 @@ const Menu = ({token}) => {
                         Home
                     </Link>
                 </div>
-                <div className='flex flex-row' >
+                <div className='flex flex-row items-center' >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -41,14 +41,14 @@ const Menu = ({token}) => {
                 </div>
                 {
                     token && (
-                        <div className='flex flex-row'>
+                        <div className='flex flex-row items-center'>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="currentColor"
-                                className="w-6 h-6  sm:flex">
+                                className="w-6 h-6 hidden sm:flex">
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"

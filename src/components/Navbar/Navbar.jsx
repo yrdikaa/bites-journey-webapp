@@ -20,12 +20,12 @@ const Navbar = () => {
 
     return (
         <div className="rounded-sm fixed top-0 left-0 right-0 z-50">
-            <div className="navbar p-4 flex flex-row justify-between items-center text-teal-900 bg-lime-200 " >
+            <div className="navbar p-4 flex flex-row justify-between items-center text-teal-900 bg-white border-b-4 border-gray-300" >
                 <div className="flex">
                     <Logo/>
                     <SearchBar/>
                 </div>
-                <div className="flex ">
+                <div className="flex sm:block ">
                     <Menu token={token}/>
                 </div>
                 <div>

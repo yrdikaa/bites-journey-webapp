@@ -2,7 +2,7 @@ import React from 'react';
 
 function SideContent({ articles, mostFrequentAuthor }) {
   return (
-    <div className="bg-red-300 p-4 rounded-xl text-teal-900">
+    <div className="bg-blue-300 p-4 rounded-xl text-teal-900">
       <h2 className="text-xl font-semibold mb-4">Rekomendasi Artikel</h2>
       <ul>
         {articles.map((article) => (

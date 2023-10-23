@@ -46,13 +46,12 @@ const ProfileMenu = () => {
             className="justify-center pt-10 mb-0 mt-10 text-black h-full sm:h-fit  border-2 border-black-500 border-solid">
 
             <div className="grid grid-cols-1 md:grid-cols-4 p-4">
-                <div
-                    className=" hidden sm:block md:col-span-1 p-4 border-solid border-2 h-full w-72 border-gray-500 bg-rose-200 rounded-xl">
+                <div>
                     <SideMenu/>
                 </div>
 
                 <div className=" p-4 mb-4 rounded border-solid border-red ">
-                    <main className="w-full buttom-0 ">
+                    <main className="w-full buttom-0 flex - ">
                         {articles.map((article) => (<ArticleCard key={article.id} articles={article}/>))}
                     </main>
                 </div>

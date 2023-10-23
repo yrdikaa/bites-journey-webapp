@@ -13,6 +13,9 @@ const SideMenu = () => {
       logout();
       window.location.href = '/login'
     };
+    const handleEdit = () => {
+        window.location.href = '/Profile/edit'
+      };
 
     useEffect(() => {
         async function fetchData() {
@@ -26,9 +29,10 @@ const SideMenu = () => {
       }, []);
       
     return (
-    <div className='flex flex-col gap-4'>
+        <div className=" hidden sm:block md:col-span-1 p-4 border-solid border-2 h-fit w-72  rounded-xl">
+  <div className='flex flex-col gap-4'>
     <div
-        className="w-full rounded-full border-teal-900 bg-stone-300 p-4 flex flex-row justify-between items-center">
+        className="w-full rounded-full border-blue-300 bg-white p-4 flex flex-row justify-between items-center ">
         <div>
             {/* Inisial Nama Pengguna sebagai Foto Profil */}
             <div
@@ -41,21 +45,21 @@ const SideMenu = () => {
         </div>
     </div>
     <button
-        onClick={handleLogout}
-        className="border  hover:border-transparent focus:border-teal-900 active:border-teal-900">
+        className="border-transparent  hover:bg-blue-200 rounded-xl focus:border-teal-900 active:border-teal-900">
         Profil
     </button>
     <button
-        onClick={handleLogout}
-        className="border  hover:border-transparent focus:border-teal-900 active:border-teal-900">
+        onClick={handleEdit}
+        className="border-transparent hover:bg-blue-200 rounded-xl text-white  focus:border-teal-900 active:border-teal-900">
         Edit Profil
     </button>
     <button
         onClick={handleLogout}
-        className="border  hover:border-transparent focus:border-teal-900 active:border-teal-900">
+        className="border-transparent  hover:bg-blue-200 rounded-xl focus:border-teal-900 active:border-teal-900">
         Logout
     </button>
 </div>
+        </div>
     )
 }
 

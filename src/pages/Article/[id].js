@@ -11,7 +11,7 @@ function Article() {
     return (
         <div>
             <AuthProvider>
-                <div className='bg-white h-screen'>
+                <div className='bg-neutral-200 h-screen'>
                     <Navbar/>
                     <div className="mt-16">
                         {/* Tambahkan margin atas */}

@@ -33,8 +33,8 @@ const ArticlePage = () => {
     }, []);
 
     return (
-        <div className="flex h-full m-10 sm:m-10 p-8">
-            <main className="w-full sm:w-3/4 overflow-y-auto">
+        <div className="flex h-full m-20 sm:m-10 p-8">
+            <main className="w-full sm:w-3/4 overflow-hidden">
                 {
                     error
                         ? (<p>{error}</p>)

@@ -7,7 +7,7 @@ const Articles = () => {
     return (
         <div>
             <AuthProvider>
-                <div className='bg-lime-100 h-screen'>
+                <div className='bg-white h-full'>
                     <Navbar/>
                     <ArticlePage/>
                 </div>

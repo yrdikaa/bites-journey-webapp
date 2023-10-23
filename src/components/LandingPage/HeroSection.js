@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+
 function HeroSection() {
 
     return (
@@ -14,10 +16,16 @@ function HeroSection() {
             <div
                 className="container mx-auto h-full flex justify-end items-center relative z-10">
                 <div className="text-white text-right">
-                    <h2 className="text-4xl font-semibold">Selamat Datang di Nama Situs Anda</h2>
-                    <p className="text-lg mt-4">Deskripsi singkat tentang situs Anda.</p>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 mt-8 rounded-full">Mulai Sekarang</button>
+                    <h2 className="text-4xl font-semibold">Welcome To Bites Journey</h2>
+                    <p className="text-lg right-0 ">Selamat datang di petualangan kuliner kami! Jelajahi
+                        berbagai makanan lezat dan temukan resepnya di artikel ini. Kami telah merasakan
+                        dan meriset makanan-makanan paling menggugah selera di kota ini. Saksikan ulasan
+                        kami dan pelajari cara membuatnya sendiri
+                    </p>
+                    <Link href={'/Articles'}>
+                        <button
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 mt-8 rounded-full">Find Out</button>
+                    </Link>
                 </div>
             </div>
         </section>
