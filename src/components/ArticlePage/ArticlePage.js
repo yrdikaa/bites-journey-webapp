@@ -1,51 +1,53 @@
-import React from 'react'
-import Card from './Card'
-import SideContent from './SideContent'
+import React, {useEffect, useState} from 'react';
+import {getArticles} from '../../../utils/Articles';
+import Card from './Card'; // Import komponen Card
+import SideContent from './SideContent';
 
 const ArticlePage = () => {
-    const articles = [
-        {
-          id: 1,
-          title: 'Cara Membuat Website dengan React',
-          author: 'John Doe',
-          description: 'Panduan langkah demi langkah untuk membuat website dengan React.',
-          image: '/lily-banse--YHSwy6uqvk-unsplash.jpg',
-        },
-        {
-          id: 2,
-          title: 'Belajar Pengembangan Web Modern',
-          author: 'Jane Smith',
-          description: 'Belajar pengembangan web modern dengan teknologi terkini.',
-          image: '/lily-banse--YHSwy6uqvk-unsplash.jpg',
-        }, {
-            id: 3,
-            title: 'Belajar Pengembangan Web Modern',
-            author: 'Jane Smith',
-            description: 'Belajar pengembangan web modern dengan teknologi terkini.',
-            image: '/lily-banse--YHSwy6uqvk-unsplash.jpg',
-          }, {
-            id: 4,
-            title: 'Belajar Pengembangan Web Modern',
-            author: 'Jane Smith',
-            description: 'Belajar pengembangan web modern dengan teknologi terkini.',
-            image: '/lily-banse--YHSwy6uqvk-unsplash.jpg',
-          },
-        // Tambahkan artikel lainnya
-      ];
+    const [articles, setArticles] = useState([]);
+    const [error, setError] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-      const mostFrequentAuthor = 'John Doe';
-  return (
-    <div className="flex m-10 sm:m-10">
-      <main className="w-full sm:w-3/4 p-4 ">
-        {articles.map((article) => (
-          <Card key={article.id} article={article} />
-        ))}
-      </main>
-      <aside className="hidden sm:block w-1/4">
-        <SideContent articles={articles} mostFrequentAuthor={mostFrequentAuthor} />
-      </aside>
-    </div>
-  )
-}
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const articlesData = await getArticles();
+                if (articlesData.length === 0) {
+                    setError('Belum ada artikel yang dibuat.');
+                } else {
+                    setArticles(articlesData);
+                    console.log(articlesData);
 
-export default ArticlePage
+                    // Mulai interval untuk mengganti gambar setiap 5 detik
+                    const imageChangeInterval = setInterval(() => {
+                        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % articlesData.length);
+                    }, 5000);
+                }
+            } catch (error) {
+                setError('Terjadi kesalahan saat mengambil data artikel.');
+                console.error('Kesalahan:', error);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    return (
+        <div className="flex h-full m-20 sm:m-10 p-8">
+            <main className="w-full sm:w-3/4 overflow-hidden">
+                {
+                    error
+                        ? (<p>{error}</p>)
+                        : (articles.map((article, index) => (
+                            <Card key={article.id} article={article} visible={index === currentImageIndex}/>
+                        )))
+                }
+            </main>
+            <aside className="hidden sm:block w-1/4">
+                <SideContent articles={articles}/>
+            </aside>
+        </div>
+    );
+};
+
+export default ArticlePage;

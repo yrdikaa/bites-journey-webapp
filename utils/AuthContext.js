@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
-
+const BASE_URL = 'http://localhost:9000/api/v1/auth';
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
   // Fungsi untuk login
   const login = async (formData) => {
     try {
-      const response = await axios.post('http://localhost:9000/api/v1/auth/login', formData); // Ganti dengan endpoint yang sesuai
+      const response = await axios.post(`${BASE_URL}/login`, formData); // Ganti dengan endpoint yang sesuai
       const userData = response.data;
 
       if (userData) {
@@ -53,13 +53,28 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('token');
   };
 
+  const registerUser = async (userData) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/register`, userData, {
+        headers: {
+          'x-api-key': 'binar-36',
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+      console.log(userData);
+    } catch (error) {
+      throw error;
+      console.log(userData);
+    }
+  };
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout,registerUser }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
+export function useAuth() {``
   return useContext(AuthContext);
 }

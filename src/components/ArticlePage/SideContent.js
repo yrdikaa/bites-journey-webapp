@@ -2,12 +2,12 @@ import React from 'react';
 
 function SideContent({ articles, mostFrequentAuthor }) {
   return (
-    <div className="bg-gray-200 p-4">
+    <div className="bg-blue-300 p-4 rounded-xl text-teal-900">
       <h2 className="text-xl font-semibold mb-4">Rekomendasi Artikel</h2>
       <ul>
         {articles.map((article) => (
           <li key={article.id} className="mb-2">
-            <a href="#" className="text-blue-500 hover:underline">
+            <a href={`/Article/${article.id_article}`} className="text-stone-900 hover:text-lime-400">
               {article.title}
             </a>
           </li>
